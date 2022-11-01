@@ -1,0 +1,22 @@
+{
+  "id": 123456,
+  "username": "aflaesch",
+  "resource_state": 2,
+  "firstname": "Arnaud",
+  "lastname": "Flaesch",
+  "bio": "",
+  "city": "Paris",
+  "state": "",
+  "country": "France",
+  "sex": "M",
+  "premium": false,
+  "summit": false,
+  "created_at": "2017-09-28T21:10:11Z",
+  "updated_at": "2022-10-24T12:11:25Z",
+  "badge_type_id": 0,
+  "weight": 0,
+  "profile_medium": "link",
+  "profile": "link",
+  "friend": null,
+  "follower": null
+}

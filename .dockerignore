@@ -1,0 +1,9 @@
+.git
+.idea
+.settings
+.classpath
+.project
+.settings
+bin
+out
+test-report

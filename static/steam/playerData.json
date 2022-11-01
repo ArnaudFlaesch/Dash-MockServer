@@ -1,0 +1,10 @@
+{
+  "response": {
+    "players":
+    [{
+      "personaname": "personaname",
+      "profileurl": "profileUrl",
+      "avatar": "avatar"
+    }]
+  }
+}
