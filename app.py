@@ -6,45 +6,42 @@ app = Flask(__name__)
 def default_route():
     return "Dash MockServer is up and running."
 
-@app.route('/openweatherapi/weather/<city>')
-def get_weather(city):
-   return current_app.send_static_file("openweatherapi/weather_"+city+".json")
 
-@app.route('/openweatherapi/forecast/<city>')
-def get_forecast(city):
-   return current_app.send_static_file("openweatherapi/forecast_"+city+".json")
+@app.route('/<path:text>', methods=['GET'])
+def all_routes(text):
 
+    # OPENWEATHERAPI
+    if 'openweatherapi/weather' in text :
+       return current_app.send_static_file("openweatherapi/weather_paris.json")
+    elif 'openweatherapi/forecast' in text :
+        return current_app.send_static_file("openweatherapi/forecast_paris.json")
 
-@app.route('/steam/playerData')
-def get_steam_player_data():
-   return current_app.send_static_file("steam/playerData.json")
+    # STEAM
+    elif "steam/ISteamUser/GetPlayerSummaries/v0002/" in text :
+        return current_app.send_static_file("steam/playerData.json")
 
-@app.route('/steam/ownedGames')
-def get_steam_owned_games():
-   return current_app.send_static_file("steam/ownedGames.json")
+    elif 'steam/IPlayerService/GetOwnedGames/v0001/' in text :
+        return current_app.send_static_file("steam/ownedGames.json")
 
-@app.route('/steam/achievementsData')
-def get_hl2ep2_stats():
-   return current_app.send_static_file("steam/halfLife2Episode2Stats.json")
+    elif 'steam/ISteamUserStats/GetPlayerAchievements/v0001' in text :
+        return current_app.send_static_file("steam/halfLife2Episode2Stats.json")
 
+    # STRAVA
+    elif 'strava/oauth/token' in text :
+        return current_app.send_static_file("strava/stravaTokenResponse.json")
 
-@app.route('/strava/token')
-def get_strava_token_reponse():
-   return current_app.send_static_file("strava/stravaTokenResponse.json")
+    elif 'strava/api/v3/athlete/activities' in text :
+        return current_app.send_static_file("strava/stravaAthleteData.json")
 
-@app.route('/strava/athleteData')
-def get_strava_athlete_data():
-   return current_app.send_static_file("strava/stravaAthleteData.json")
+    elif 'strava/api/v3/athlete' in text :
+        return current_app.send_static_file("strava/stravaActivitiesData.json")
 
-@app.route('/strava/activitiesData')
-def get_strava_activities_data():
-   return current_app.send_static_file("strava/stravaActivitiesData.json")
+    # AIRPARIF
+    elif 'airParif/commune/<insee>' in text :
+        return current_app.send_static_file("airParif/airParifForecastResponse.json")
 
+    elif 'airParif/couleurs' in text :
+        return current_app.send_static_file("airParif/airParifColorsResponse.json")
 
-@app.route('/airParif/forecast')
-def get_airparif_forecast():
-   return current_app.send_static_file("airParif/airParifForecastResponse.json")
-
-@app.route('/airParif/colors')
-def get_airparif_colors():
-   return current_app.send_static_file("airParif/airParifColorsResponse.json")
+    else:
+        return "Not found"
