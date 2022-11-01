@@ -7,7 +7,7 @@ def default_route():
     return "Dash MockServer is up and running."
 
 
-@app.route('/<path:text>', methods=['GET'])
+@app.route('/<path:text>', methods=['GET', 'POST'])
 def all_routes(text):
 
     # OPENWEATHERAPI
@@ -31,13 +31,13 @@ def all_routes(text):
         return current_app.send_static_file("strava/stravaTokenResponse.json")
 
     elif 'strava/api/v3/athlete/activities' in text :
-        return current_app.send_static_file("strava/stravaAthleteData.json")
-
-    elif 'strava/api/v3/athlete' in text :
         return current_app.send_static_file("strava/stravaActivitiesData.json")
 
+    elif 'strava/api/v3/athlete' in text :
+        return current_app.send_static_file("strava/stravaAthleteData.json")
+
     # AIRPARIF
-    elif 'airParif/commune/<insee>' in text :
+    elif 'airParif/commune' in text :
         return current_app.send_static_file("airParif/airParifForecastResponse.json")
 
     elif 'airParif/couleurs' in text :
