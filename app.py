@@ -13,6 +13,7 @@ def all_routes(text):
     # OPENWEATHERAPI
     if 'openweatherapi/weather' in text :
        return current_app.send_static_file("openweatherapi/weather_paris.json")
+
     elif 'openweatherapi/forecast' in text :
         return current_app.send_static_file("openweatherapi/forecast_paris.json")
 
