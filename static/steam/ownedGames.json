@@ -1,0 +1,115 @@
+{
+  "response": {
+    "game_count": 27,
+    "games": [
+      {
+        "appid": 220,
+        "name": "Half-Life 2"
+      },
+      {
+        "appid": 340,
+        "name": "Half-Life 2: Lost Coast"
+      },
+      {
+        "appid": 280,
+        "name": "Half-Life: Source"
+      },
+      {
+        "appid": 360,
+        "name": "Half-Life Deathmatch: Source"
+      },
+      {
+        "appid": 320,
+        "name": "Half-Life 2: Deathmatch"
+      },
+      {
+        "appid": 380,
+        "name": "Half-Life 2: Episode One"
+      },
+      {
+        "appid": 420,
+        "name": "Half-Life 2: Episode Two"
+      },
+      {
+        "appid": 2620,
+        "name": "Call of Duty"
+      },
+      {
+        "appid": 2630,
+        "name": "Call of Duty 2"
+      },
+      {
+        "appid": 2641,
+        "name": "Call of Duty 4"
+      },
+      {
+        "appid": 2642,
+        "name": "Call of Duty 5"
+      },
+      {
+        "appid": 2643,
+        "name": "Call of Duty 6"
+      },
+      {
+        "appid": 2644,
+        "name": "Call of Duty 7"
+      },
+      {
+        "appid": 2645,
+        "name": "Call of Duty 8"
+      },
+      {
+        "appid": 2646,
+        "name": "Call of Duty 9"
+      },
+      {
+        "appid": 2647,
+        "name": "Call of Duty 10"
+      },
+      {
+        "appid": 2648,
+        "name": "Call of Duty 11"
+      },
+      {
+        "appid": 2649,
+        "name": "Call of Duty 12"
+      },
+      {
+        "appid": 2650,
+        "name": "Call of Duty 13"
+      },
+      {
+        "appid": 2651,
+        "name": "Call of Duty 14"
+      },
+      {
+        "appid": 2652,
+        "name": "Call of Duty 15"
+      },
+      {
+        "appid": 2653,
+        "name": "Call of Duty 16"
+      },
+      {
+        "appid": 2654,
+        "name": "Call of Duty 17"
+      },
+      {
+        "appid": 2655,
+        "name": "Call of Duty 18"
+      },
+      {
+        "appid": 2656,
+        "name": "Call of Duty 19"
+      },
+      {
+        "appid": 2657,
+        "name": "Call of Duty 20"
+      },
+      {
+        "appid": 2658,
+        "name": "Call of Duty 21"
+      }
+    ]
+  }
+}

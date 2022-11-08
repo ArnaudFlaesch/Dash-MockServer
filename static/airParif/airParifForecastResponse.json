@@ -1,0 +1,22 @@
+{
+  "75112":[
+    {
+      "date":"2021-01-15",
+      "no2":"Bon",
+      "o3":"Mauvais",
+      "pm10":"Moyen",
+      "pm25":"Dégradé",
+      "so2":"Bon",
+      "indice":"Dégradé"
+    },
+    {
+      "date":"2021-01-16",
+      "no2":"Bon",
+      "o3":"Mauvais",
+      "pm10":"Dégradé",
+      "pm25":"Moyen",
+      "so2":"Dégradé",
+      "indice":"Bon"
+    }
+  ]
+}
