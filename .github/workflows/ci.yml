@@ -40,5 +40,5 @@ jobs:
       - name: Docker build and push
         run: |
           docker build -t dashmockserver .
-          docker tag dashmockserver ArnaudFlaesch/Dash-MockServer:${{env.DOCKER_TAG_NAME}}
-          docker push ArnaudFlaesch/Dash-MockServer:${{env.DOCKER_TAG_NAME}}
+          docker tag dashmockserver arnaudflaesch/dash-mockserver:${{env.DOCKER_TAG_NAME}}
+          docker push arnaudflaesch/dash-mockserver:${{env.DOCKER_TAG_NAME}}
