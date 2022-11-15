@@ -42,6 +42,7 @@ jobs:
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
+        if: success() && !contains(github.ref, 'renovate/')
         with:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{env.DOCKER_TAG_NAME}}
