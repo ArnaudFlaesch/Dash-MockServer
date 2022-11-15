@@ -38,7 +38,7 @@ jobs:
         if: github.ref != 'refs/heads/master' && !contains(github.ref, 'renovate/')
 
       - name: Docker build and push
-        run : |
+        run: |
           docker build -t dashmockserver .
-          docker tag dashmockserver arnaudf93/dashmockserver:${{env.DOCKER_TAG_NAME}}
-          docker push arnaudf93/dashmockserver:${{env.DOCKER_TAG_NAME}}
+          docker tag dashmockserver ArnaudFlaesch/Dash-MockServer:${{env.DOCKER_TAG_NAME}}
+          docker push ArnaudFlaesch/Dash-MockServer:${{env.DOCKER_TAG_NAME}}
