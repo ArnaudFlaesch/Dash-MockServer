@@ -10,8 +10,8 @@
       },
       {
         "apiname": "EP2_KILL_ALLGRUBS",
-        "achieved": 0,
-        "unlocktime": 0
+        "achieved": 1,
+        "unlocktime": 1352487603
       },
       {
         "apiname": "EP2_BREAK_ALLWEBS",
@@ -50,8 +50,8 @@
       },
       {
         "apiname": "EP2_FIND_ALLRADARCACHES",
-        "achieved": 1,
-        "unlocktime": 1352497466
+        "achieved": 0,
+        "unlocktime": 0
       },
       {
         "apiname": "EP2_BEAT_RACEWITHDOG",
@@ -65,13 +65,13 @@
       },
       {
         "apiname": "EP2_BEAT_WHITEFORESTINN",
-        "achieved": 1,
-        "unlocktime": 1352497109
+        "achieved": 0,
+        "unlocktime": 0
       },
       {
         "apiname": "EP2_PUT_ITEMINROCKET",
-        "achieved": 0,
-        "unlocktime": 0
+        "achieved": 1,
+        "unlocktime": 1352487603
       },
       {
         "apiname": "EP2_BEAT_MISSILESILO2",
@@ -80,8 +80,8 @@
       },
       {
         "apiname": "EP2_BEAT_OUTLAND12_NOBUILDINGSDESTROYED",
-        "achieved": 0,
-        "unlocktime": 0
+        "achieved": 1,
+        "unlocktime": 1352487603
       },
       {
         "apiname": "EP2_BEAT_GAME",
@@ -115,8 +115,8 @@
       },
       {
         "apiname": "GLOBAL_GNOME_ALONE",
-        "achieved": 0,
-        "unlocktime": 0
+        "achieved": 1,
+        "unlocktime": 1352487603
       }
     ],
     "success": true
