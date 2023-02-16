@@ -30,7 +30,7 @@ jobs:
       - name: Set Docker tag for release
         run: |
           echo "DOCKER_TAG_NAME=latest" >> $GITHUB_ENV
-        if: github.ref == 'refs/heads/master'
+    #    if: github.ref == 'refs/heads/master'
 
       - name: Set Docker tag for test
         run: |
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v4
-        if: success() && !contains(github.ref, 'renovate/')
+    #    if: success() && !contains(github.ref, 'renovate/')
         with:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{env.DOCKER_TAG_NAME}}
