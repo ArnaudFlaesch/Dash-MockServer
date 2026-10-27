@@ -1,4 +1,4 @@
-FROM python:3.15.1-alpine3.23
+FROM python:3.15.2-alpine3.23
 EXPOSE 5000
 
 RUN adduser --system --no-create-home dockeruser
