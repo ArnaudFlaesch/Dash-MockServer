@@ -1,28 +1,47 @@
 name: Python CI
 
-on: ["push"]
+on: [ "push", "workflow_dispatch" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write # to push the container image
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of SonarCloud analysis
 
-      - name: Set up Python 3.14
-        uses: actions/setup-python@v7
+      - name: Set up Python 3.15
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.15"
+          cache: "pip"
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          pip install --require-hashes --only-binary :all: -r requirements-dev.txt
+
+      - name: Test
+        run: python -m pytest --cov=app --cov-report=xml
 
       - name: Login to Github Container Registry
-        uses: docker/login-action@v4
+        uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v8.4
+        uses: SonarSource/sonarqube-scan-action@v8.4.0 # not digest-pinned: Codacy flags the SHA as a SonarQube token
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -32,18 +51,13 @@ jobs:
           echo "DOCKER_TAG_NAME=latest" >> $GITHUB_ENV
         if: github.ref == 'refs/heads/master'
 
-      - name: Set Docker tag for test
-        run: |
-          echo "DOCKER_TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        if: github.ref != 'refs/heads/master' && !contains(github.ref, 'renovate/')
-
       - name: Lowercase the repo name and username
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
       - name: Build and push container image to registry
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         if: success() && !contains(github.ref, 'renovate/')
         with:
           push: true
-          tags: ghcr.io/${{ env.REPO }}:${{env.DOCKER_TAG_NAME}}
+          tags: ghcr.io/${{ env.REPO }}:latest #${{env.DOCKER_TAG_NAME}}
           file: ./Dockerfile
