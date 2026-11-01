@@ -41,7 +41,7 @@ jobs:
           password: ${{ github.token }}
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v8.4.0 # not digest-pinned: Codacy flags the SHA as a SonarQube token
+        uses: SonarSource/sonarqube-scan-action@v8.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -51,6 +51,11 @@ jobs:
           echo "DOCKER_TAG_NAME=latest" >> $GITHUB_ENV
         if: github.ref == 'refs/heads/master'
 
+      - name: Set Docker tag for test
+        run: |
+          echo "DOCKER_TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        if: github.ref != 'refs/heads/master' && !contains(github.ref, 'renovate/')
+
       - name: Lowercase the repo name and username
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
@@ -59,5 +64,5 @@ jobs:
         if: success() && !contains(github.ref, 'renovate/')
         with:
           push: true
-          tags: ghcr.io/${{ env.REPO }}:latest #${{env.DOCKER_TAG_NAME}}
+          tags: ghcr.io/${{ env.REPO }}:${{env.DOCKER_TAG_NAME}}
           file: ./Dockerfile
