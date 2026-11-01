@@ -1,6 +1,6 @@
 name: Python CI
 
-on: ["push", "workflow_dispatch"]
+on: [ "push", "workflow_dispatch" ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -27,10 +27,11 @@ jobs:
           cache-dependency-path: requirements-dev.txt
 
       - name: Install dependencies
-        run: pip install -r requirements-dev.txt
+        run:
+          pip install --require-hashes --only-binary :all: -r requirements-dev.txt
 
       - name: Test
-        run: python -m pytest
+        run: python -m pytest --cov=app --cov-report=xml
 
       - name: Login to Github Container Registry
         uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
@@ -40,7 +41,7 @@ jobs:
           password: ${{ github.token }}
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@4d1dc0c91ee400dcf8a6dddf2f705ac36542e304 # v8.4.0
+        uses: SonarSource/sonarqube-scan-action@v8.4.0 # not digest-pinned: Codacy flags the SHA as a SonarQube token
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -49,11 +50,6 @@ jobs:
         run: |
           echo "DOCKER_TAG_NAME=latest" >> $GITHUB_ENV
         if: github.ref == 'refs/heads/master'
-
-      - name: Set Docker tag for test
-        run: |
-          echo "DOCKER_TAG_NAME=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-        if: github.ref != 'refs/heads/master' && !contains(github.ref, 'renovate/')
 
       - name: Lowercase the repo name and username
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}

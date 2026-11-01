@@ -1,11 +1,16 @@
 FROM python:3.15.2-alpine3.23
-EXPOSE 5000
 
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
 RUN adduser --system --no-create-home dockeruser
-COPY requirements.txt requirements.txt
-RUN pip3 install --no-cache-dir -r requirements.txt
-COPY app.py app.py
+
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir --require-hashes --only-binary :all: -r requirements.txt
+COPY app.py .
 COPY static static
 
 USER dockeruser
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+EXPOSE 5000
+CMD ["python3", "-m", "flask", "--app", "app", "run", "--host=0.0.0.0"]
