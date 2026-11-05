@@ -1,9 +1,9 @@
 {
   "token_type": "Bearer",
-  "expiresAt": 1644882561,
+  "expires_at": 1644882561,
   "expires_in": 10384,
-  "refreshToken": "TOKEN",
-  "accessToken": "REFRESH_TOKEN",
+  "refresh_token": "REFRESH_TOKEN",
+  "access_token": "TOKEN",
   "athlete": {
     "id": 12346,
     "username": "aflaesch",
@@ -17,11 +17,11 @@
     "sex": "M",
     "premium": false,
     "summit": false,
-    "createdAt": "2017-09-28T21:10:11Z",
-    "updatedAt": "2022-02-14T20:56:15Z",
-    "badgeTypeId": 0,
+    "created_at": "2017-09-28T21:10:11Z",
+    "updated_at": "2022-02-14T20:56:15Z",
+    "badge_type_id": 0,
     "weight": 0.0,
-    "profileMedium": "jpg",
+    "profile_medium": "jpg",
     "profile": "jpg"
   }
 }
